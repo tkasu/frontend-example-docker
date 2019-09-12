@@ -49,3 +49,7 @@ docker stop frontend_test
 
 By default the expected path to backend is /api. This is where the application will send requests. 
 To manually configure api path run with `API_URL` environment value set, for example `API_URL=http://localhost:8888 npm start` or `API_URL=<url> npm build`
+
+### Dockerized backend
+
+To start dockerized backend, see the backend project's instructions: https://github.com/tkasu/backend-example-docker
