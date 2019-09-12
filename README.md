@@ -33,6 +33,18 @@ To use a npm package called serve to serve the project in port 5000:
 
 Test that the project is running by going to <http://localhost:5000>
 
+### Dockerized solution
+
+```bash
+docker build -t frontend_example .
+docker run --name frontend_test -p 5000:5000 -d frontend_example
+```
+
+To stop the server:
+```bash
+docker stop frontend_test
+```
+
 ## Exercise 1.12 -> to connect to backend
 
 By default the expected path to backend is /api. This is where the application will send requests. 
