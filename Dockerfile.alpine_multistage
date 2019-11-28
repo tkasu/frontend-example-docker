@@ -1,0 +1,30 @@
+FROM node:alpine as builder
+
+ENV API_URL=http://localhost:8000
+
+WORKDIR /app
+
+RUN apk add --no-cache curl git && \
+    git clone https://github.com/tkasu/frontend-example-docker.git . && \
+    npm install && \
+    apk del curl git
+
+RUN npm run build
+
+
+FROM node:alpine
+
+ENV API_URL=http://localhost:8000
+
+WORKDIR /app
+
+COPY --from=builder /app/dist ./dist
+
+RUN npm install -g serve && \
+    adduser -D app_user && \
+    chown -R app_user .
+
+USER app_user
+
+EXPOSE 5000
+CMD npx serve -s -l 5000 dist
